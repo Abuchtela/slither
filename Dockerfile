@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1.3
-FROM ubuntu:jammy AS python-wheels
+FROM ubuntu:22.04 AS python-wheels
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     gcc \
     python3-dev \
@@ -13,7 +13,7 @@ RUN cd /slither && \
     pip3 wheel -w /wheels . solc-select pip setuptools wheel
 
 
-FROM ubuntu:jammy AS final
+FROM ubuntu:22.04 AS final
 
 LABEL name=slither
 LABEL src="https://github.com/trailofbits/slither"
